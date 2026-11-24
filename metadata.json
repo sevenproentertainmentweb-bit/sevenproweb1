@@ -1,0 +1,8 @@
+{
+  "name": "Remix Sevenpro Entertainment",
+  "description": "Sevenpro Entertainment is an agency for dancers and entertainment events based in Bali, Indonesia.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
