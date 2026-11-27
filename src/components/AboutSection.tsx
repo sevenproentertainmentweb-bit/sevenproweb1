@@ -116,10 +116,10 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
 
                 <div>
                   <dt className="text-xs font-medium tracking-[0.14em] text-white/50 uppercase">
-                    Founder & Manager
+                    Founder
                   </dt>
                   <dd className="mt-1.5 font-display text-lg font-medium text-white">
-                    Ni Nyoman Komalasari
+                    Ni Nyoman Komala Sari
                   </dd>
                 </div>
 
@@ -214,15 +214,15 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {TEAM_MEMBERS.map((member) => {
               const hasFailed = Boolean(failedTeamImages[member.name]);
               return (
                 <article
                   key={member.name}
-                  className="group bg-[#0B0B0D] border border-white/10 hover:border-[#D4AF37]/45 transition-colors duration-200 flex flex-col"
+                  className="group bg-[#0B0B0D] border border-white/10 hover:border-[#D4AF37]/45 transition-colors duration-200 flex flex-col sm:flex-row overflow-hidden"
                 >
-                  <div className="relative aspect-[3/4] w-full overflow-hidden bg-[#111114] border-b border-white/10">
+                  <div className="relative w-full sm:w-[210px] lg:w-[224px] shrink-0 aspect-[386/320] overflow-hidden bg-[#111114] border-b sm:border-b-0 sm:border-r border-white/10">
                     {!hasFailed ? (
                       <img
                         src={member.image}
@@ -231,7 +231,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
                         onError={() =>
                           setFailedTeamImages((prev) => ({ ...prev, [member.name]: true }))
                         }
-                        className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+                        className="h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.02]"
                       />
                     ) : (
                       <div className="flex h-full w-full flex-col items-center justify-center bg-[radial-gradient(circle_at_top,_rgba(212,175,55,0.12),_rgba(11,11,13,0.98)_75%)] p-6 text-center">
@@ -241,11 +241,11 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
                     )}
                     <div
                       aria-hidden="true"
-                      className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/60 to-transparent"
+                      className="pointer-events-none absolute inset-x-0 bottom-0 h-14 bg-gradient-to-t from-black/50 to-transparent"
                     />
                   </div>
 
-                  <div className="p-6 flex-1 flex flex-col">
+                  <div className="p-6 flex-1 flex flex-col justify-center">
                     <p className="text-xs font-medium tracking-[0.16em] text-[#D4AF37] uppercase">
                       {member.role}
                     </p>

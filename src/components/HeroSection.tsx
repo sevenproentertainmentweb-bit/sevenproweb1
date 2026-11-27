@@ -5,16 +5,39 @@ import { ChevronLeft, ChevronRight, MessageSquare, Sparkles } from 'lucide-react
 interface HeroSlide {
   src: string;
   alt: string;
+  objectPosition?: string;
 }
 
 const HERO_SLIDES: HeroSlide[] = [
   {
-    src: 'https://res.cloudinary.com/ypvr42cl/image/upload/v1795350363/5aaa181d-4a58-499f-8020-731045e30bc0.png',
+    src: 'https://res.cloudinary.com/ypvr42cl/image/upload/f_auto,q_auto/v1795350363/5aaa181d-4a58-499f-8020-731045e30bc0.png',
     alt: 'Sevenpro Entertainment performers in dramatic red and gold stage choreography in Bali',
+    objectPosition: 'object-center',
   },
   {
-    src: 'https://res.cloudinary.com/ypvr42cl/image/upload/v1795350365/ff9c2288-622d-47a9-9a6d-cde05e571719.png',
+    src: 'https://res.cloudinary.com/ypvr42cl/image/upload/f_auto,q_auto/v1795350365/ff9c2288-622d-47a9-9a6d-cde05e571719.png',
     alt: 'Sevenpro Entertainment live stage production and dancer ensemble performance',
+    objectPosition: 'object-center',
+  },
+  {
+    src: 'https://res.cloudinary.com/ypvr42cl/image/upload/f_auto,q_auto/v1795353892/0306fd78-3d5f-4bc1-9746-5693c1fd5946.png',
+    alt: 'Asmara Surya Ratih Balinese mythological ensemble choreography by Sevenpro Entertainment',
+    objectPosition: 'object-[50%_30%]',
+  },
+  {
+    src: 'https://res.cloudinary.com/ypvr42cl/image/upload/f_auto,q_auto/v1795354037/8d419c3d-5ef0-4e10-bed2-9e85b2d56275.png',
+    alt: 'Dewi Langit celestial blue fan and theatrical light dance show in Bali',
+    objectPosition: 'object-[50%_30%]',
+  },
+  {
+    src: 'https://res.cloudinary.com/ypvr42cl/image/upload/f_auto,q_auto/v1795354000/6f541b40-8c3c-4fd0-8f51-69981524aeec.png',
+    alt: 'Fire Dance flame choreography for resort stages and outdoor galas in Bali',
+    objectPosition: 'object-[50%_25%]',
+  },
+  {
+    src: 'https://res.cloudinary.com/ypvr42cl/image/upload/f_auto,q_auto/v1795448459/9d9c9fac-0b2f-475e-a73b-e70d31f432f1.png',
+    alt: 'Eight-dancer traditional and contemporary stage formation by Sevenpro Entertainment',
+    objectPosition: 'object-[50%_28%]',
   },
 ];
 
@@ -41,6 +64,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
     }, ROTATION_INTERVAL_MS);
     return () => window.clearInterval(timer);
   }, [isPaused]);
+
+  useEffect(() => {
+    const nextIndex = (currentIndex + 1) % HERO_SLIDES.length;
+    const preloader = new Image();
+    preloader.referrerPolicy = 'no-referrer';
+    preloader.src = HERO_SLIDES[nextIndex].src;
+  }, [currentIndex]);
 
   const handlePrev = () => {
     setCurrentIndex((prev) => (prev - 1 + HERO_SLIDES.length) % HERO_SLIDES.length);
@@ -83,7 +113,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 alt={activeSlide.alt}
                 referrerPolicy="no-referrer"
                 onError={() => handleImageError(currentIndex)}
-                className="h-full w-full object-cover object-center select-none"
+                className={`h-full w-full object-cover ${activeSlide.objectPosition || 'object-center'} select-none`}
               />
             ) : (
               <div className="flex h-full w-full flex-col items-center justify-center bg-[radial-gradient(ellipse_at_top,_rgba(212,175,55,0.18),_rgba(5,5,5,0.98)_70%)] text-center px-6">
